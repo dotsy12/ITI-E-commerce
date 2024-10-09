@@ -53,6 +53,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/cart" element={<Cart />} />
               <Route path="/add" element={<AddProduct />} />
             </Routes>
           </Box>

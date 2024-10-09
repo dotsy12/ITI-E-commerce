@@ -34,7 +34,7 @@ const AddProduct = () => {
         dispatch(addProduct(newProduct));
 
         // Reset form fields
-        setProductName(''); 
+        setProductName('');
         setDescription('');
         setPrice('');
         setCategory('');
