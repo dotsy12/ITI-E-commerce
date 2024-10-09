@@ -10,12 +10,13 @@ import Home from "./pages/Home";
 
 import Cart from "components/cart/Cart";
 import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
+import SignupPage from "./pages/SignupPage";  
 import ContactUs from "./pages/ContactUs";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setProducts } from "./redux/productSlice";
 import { allProducts } from "./products";
+import AddProduct from "./components/CreateNewProduct/CreateNewProduct";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -52,6 +53,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/add" element={<AddProduct />} />
             </Routes>
           </Box>
           <Footer />
