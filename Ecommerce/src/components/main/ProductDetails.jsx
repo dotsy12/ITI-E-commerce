@@ -6,13 +6,22 @@ const ProductDetails = ({ product }) => {
     const handelAddToCart = (product) => {
         // Retrieve existing cart items from localStorage
         const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
-
-        // Add the new product to the cart
-        const updatedCartItems = [...cartItems, product];
-
+    
+        // Check if the product is already in the cart
+        const isInCart = cartItems.some(item => item.id === product.id);
+    
+        // Add the product to the cart if it's not already there
+        let updatedCartItems = [];
+        if (isInCart) {
+            updatedCartItems = cartItems; // Product already in the cart, no change
+        } else {
+            updatedCartItems = [...cartItems, product]; // Add new product to the cart
+        }
+    
         // Store the updated cart back to localStorage
         localStorage.setItem("cart", JSON.stringify(updatedCartItems));
     };
+    
 
     return (
         <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, flexDirection: { xs: "column", sm: "row" } }}>
