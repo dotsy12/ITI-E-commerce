@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { setProducts } from "./redux/productSlice";
 import { allProducts } from "./products";
 import AddProduct from "./components/CreateNewProduct/CreateNewProduct";
+import Services from "./components/Services/Services";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -51,6 +52,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/cart" element={<Cart />} />
