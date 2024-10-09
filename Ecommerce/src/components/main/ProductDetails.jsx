@@ -1,7 +1,19 @@
+/* eslint-disable react/prop-types */
 import { Box, Button, Stack, Typography } from "@mui/material";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const ProductDetails = ({ product }) => {
+    const handelAddToCart = (product) => {
+        // Retrieve existing cart items from localStorage
+        const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+
+        // Add the new product to the cart
+        const updatedCartItems = [...cartItems, product];
+
+        // Store the updated cart back to localStorage
+        localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+    };
+
     return (
         <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, flexDirection: { xs: "column", sm: "row" } }}>
             <Box sx={{ display: "flex" }}>
@@ -30,7 +42,7 @@ const ProductDetails = ({ product }) => {
                     ))}
                 </Stack>
 
-                <Button sx={{ mb: { xs: 1, sm: 0 }, textTransform: "capitalize" }} variant="contained">
+                <Button sx={{ mb: { xs: 1, sm: 0 }, textTransform: "capitalize" }} variant="contained" onClick={() => handelAddToCart(product)}>
                     <AddShoppingCartIcon sx={{ mr: 1 }} fontSize="small" />
                     Buy Now
                 </Button>

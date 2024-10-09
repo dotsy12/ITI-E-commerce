@@ -1,51 +1,54 @@
-import React, { useState } from 'react';
-import { Container, Typography, Button, TextField, Stack, Paper, Divider, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box, Grid } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { Container, Typography, Button, TextField, Stack, Paper, Divider, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box, Grid, Rating } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const Carte = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Sigma 18-35mm', price: 1249, quantity: 6, image: 'https://example.com/sigma.jpg' },
-    { id: 2, name: 'TDOO Digital Camera', price: 1749, quantity: 3, image: 'https://example.com/tdoo.jpg' },
-    { id: 3, name: 'Canon EOS 4000D DSLR', price: 499, quantity: 1, image: 'https://example.com/canon4000d.jpg' },
-    { id: 4, name: 'Canon EF 100-400', price: 899, quantity: 2, image: 'https://example.com/canonef100-400.jpg' },
-    { id: 5, name: 'Nikon AF-S NIKKOR', price: 549, quantity: 1, image: 'https://example.com/nikon.jpg' },
-  ]);
-
+  const [cartItems, setCartItems] = useState([]);
   const [coupon, setCoupon] = useState('');
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartItems(storedCart);
+  }, []);
 
   const handleQuantityChange = (id, newQuantity) => {
     const updatedCart = cartItems.map(item =>
       item.id === id ? { ...item, quantity: newQuantity } : item
     );
     setCartItems(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   const handleIncrease = (id) => {
-    handleQuantityChange(id, cartItems.find(item => item.id === id).quantity + 1);
+    handleQuantityChange(id, (cartItems.find(item => item.id === id)?.quantity || 0) + 1);
   };
 
   const handleDecrease = (id) => {
     const currentItem = cartItems.find(item => item.id === id);
-    if (currentItem.quantity > 1) {
+    if (currentItem && currentItem.quantity > 1) {
       handleQuantityChange(id, currentItem.quantity - 1);
     }
   };
 
   const getTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cartItems.reduce((total, item) => total + item.price * (item.quantity || 1), 0);
+  };
+
+  const handleEmptyCart = () => {
+    setCartItems([]);
+    localStorage.setItem("cart", JSON.stringify([]));
   };
 
   return (
     <Container sx={{ mt: 3 }}>
-      <Typography variant="h4" component="h1" gutterBottom sx={{ display: 'flex', alignItems: 'center', mb: 3 ,color: "#d23f57" }}>
-              <ShoppingCartIcon sx={{ mr: 1, color: "#d23f57"}} /> Your Cart
+      <Typography variant="h4" component="h1" gutterBottom sx={{ display: 'flex', alignItems: 'center', mb: 3, color: "#d23f57" }}>
+        <ShoppingCartIcon sx={{ mr: 1, color: "#d23f57" }} /> Your Cart
       </Typography>
 
       <Grid container spacing={3}>
-        {/* Table section */}
         <Grid item xs={12} md={8}>
           <TableContainer component={Paper}>
             <Table>
@@ -53,8 +56,10 @@ const Carte = () => {
                 <TableRow>
                   <TableCell sx={{ color: "#d23f57" }}>Image</TableCell>
                   <TableCell sx={{ color: "#d23f57" }}>Product</TableCell>
+                  <TableCell sx={{ color: "#d23f57" }}>Category</TableCell>
                   <TableCell sx={{ color: "#d23f57" }}>Price</TableCell>
                   <TableCell sx={{ color: "#d23f57" }}>Quantity</TableCell>
+                  <TableCell sx={{ color: "#d23f57" }}>Rating</TableCell>
                   <TableCell sx={{ color: "#d23f57" }}>Total</TableCell>
                 </TableRow>
               </TableHead>
@@ -64,13 +69,17 @@ const Carte = () => {
                     <TableCell>
                       <img src={item.image} alt={item.name} style={{ width: '100px', height: 'auto' }} />
                     </TableCell>
-                    <TableCell>{item.name}</TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle1">{item.name}</Typography>
+                      <Typography variant="body2" color="text.secondary">{item.description}</Typography>
+                    </TableCell>
+                    <TableCell>{item.category}</TableCell>
                     <TableCell>${item.price}</TableCell>
                     <TableCell>
                       <Stack direction="row" alignItems="center">
                         <TextField
                           type="number"
-                          value={item.quantity}
+                          value={item.quantity || 1}
                           onChange={(e) => handleQuantityChange(item.id, Number(e.target.value))}
                           variant="outlined"
                           size="small"
@@ -107,26 +116,28 @@ const Carte = () => {
                         </Stack>
                       </Stack>
                     </TableCell>
-                    <TableCell>${item.price * item.quantity}</TableCell>
+                    <TableCell>
+                      <Rating value={item.rating} readOnly />
+                    </TableCell>
+                    <TableCell>${item.price * (item.quantity || 1)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
 
-          <Button variant="contained" color="error" startIcon={<DeleteIcon />} onClick={() => setCartItems([])} sx={{ mt: 2 }}>
+          <Button variant="contained" color="error" startIcon={<DeleteIcon />} onClick={handleEmptyCart} sx={{ mt: 2 }}>
             Empty Cart
           </Button>
         </Grid>
 
-        {/* Your Order section */}
         <Grid item xs={12} md={4}>
           <Paper elevation={3} sx={{ p: 3 }}>
             <Typography variant="h6" sx={{ color: "#d23f57" }}>Your Order</Typography>
             <Divider sx={{ my: 2 }} />
             {cartItems.map(item => (
               <Typography key={item.id}>
-                {item.name} x {item.quantity} = ${item.price * item.quantity}
+                {item.name} x {item.quantity || 1} = ${item.price * (item.quantity || 1)}
               </Typography>
             ))}
             <Divider sx={{ my: 2 }} />
@@ -139,7 +150,7 @@ const Carte = () => {
                 fullWidth
                 variant="outlined"
               />
-              <Button variant="contained"  color="error" sx={{ mt: 2 }} fullWidth>
+              <Button variant="contained" color="error" sx={{ mt: 2 }} fullWidth>
                 Apply Coupon
               </Button>
             </Box>
