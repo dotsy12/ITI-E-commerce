@@ -11,7 +11,7 @@ const Home = () => {
             <Header1 />
             <Header2 />
             <Header3 />
-            <Section/>
+            <Section />
             <Hero />
             <Main />
             {/* here will be other home components like for you products */}

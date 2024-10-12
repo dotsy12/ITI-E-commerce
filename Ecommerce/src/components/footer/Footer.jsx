@@ -40,7 +40,7 @@ const Footer = () => {
                     </Link>
                     <br />
                     <Link to="/about" style={{color: "white", textDecoration: "none"}}>
-                        About
+                        About Us
                     </Link>
                     <br />
                     <Link to="/services" style={{color: "white", textDecoration: "none"}}>

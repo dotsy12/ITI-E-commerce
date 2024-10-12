@@ -20,7 +20,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import LINKS from "./LINKS"
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Header3 = () => {
 
@@ -122,14 +122,13 @@ const Header3 = () => {
       </Box>
 
       {useMediaQuery('(min-width:1200px)') && (
-        <Stack gap={10} direction={"row"} alignItems={"center"} >
-          <Link to="/" className="header" style={{textDecoration: "none", color: "white"}} >{"Home"}</Link>
+        <Stack gap={10} direction={"row"} alignItems={"center"}>
+          <Link to='/' style={{ textDecoration: 'none', color: 'black' }} className="header">{"Home"}</Link>
           <LINKS title={"Pages"} />
-          <Link to="/about" className="header" style={{textDecoration: "none", color: "white"}}>{"About us"}</Link>
-          <Link to="/contact" className="header" style={{textDecoration: "none", color: "white"}}>{"Contact us"}</Link>
-
-
+          <Link to='/about' style={{ textDecoration: 'none', color: 'black' }} className="header">{"About us"}</Link>
+          <Link to='/contact' style={{ textDecoration: 'none', color: 'black' }} className="header">{"Contact us"}</Link>
         </Stack>
+
       )}
 
 
