@@ -122,11 +122,12 @@ const Header3 = () => {
 
       {useMediaQuery('(min-width:1200px)') && (
         <Stack gap={10} direction={"row"} alignItems={"center"} >
-          <LINKS title={"Home"} />
-          <LINKS title={"Menu"} />
-          <LINKS title={"Fullscreen Menu"} />
-          <LINKS href="/about" title={"ِAbout Us"} />
+          <p className="header" >{"Home"}</p>
           <LINKS title={"Pages"} />
+          <p className="header">{"About us"}</p>
+          <p className="header">{"Contact us"}</p>
+
+
         </Stack>
       )}
 
@@ -148,13 +149,11 @@ const Header3 = () => {
           <IconButton sx={{ ":hover": { color: "red", rotate: "360deg", transition: "0.3s" }, position: "absolute", top: 0, right: 10 }} onClick={toggleDrawer("top", false)} >
             <Close />
           </IconButton>
-
           {[
-            { mainLink: "Home", subLink: ["link1", "link2", "link3"] },
-            { mainLink: "menu", subLink: ["link1", "link2", "link3"] },
-            { mainLink: "Fullscreen menu", subLink: ["link1", "link2", "link3"] },
-            { mainLink: "Home", subLink: ["link1", "link2", "link3"] },
-            { mainLink: "pages", subLink: ["link1", "link2", "link3"] },
+            { mainLink: "Home", subLink: ["Market", "Gadget", "fashion"] },
+            { mainLink: "menu", subLink: ["User Account", "Products", "Orders", "Sale Page"] },
+            { mainLink: "Fullscreen menu", subLink: ["Electronics", "Fashion", "Book", "Sports"] },
+            { mainLink: "pages", subLink: ["Sale page", "Shop", "Vendor"] },
           ].map((item) => {
             return (
               <Accordion key={item.mainLink} elevation={0} sx={{ bgcolor: "initial" }}>
