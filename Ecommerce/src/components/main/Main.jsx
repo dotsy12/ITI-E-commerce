@@ -10,6 +10,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Close } from "@mui/icons-material";
 import ProductDetails from "./ProductDetails";
 import { useSelector } from "react-redux"; // Import hooks
+import { Link } from "react-router-dom";
 // import { setProducts } from "../../redux/productSlice"; // Import the action from the product slice
 
 // import { allProducts } from '../../products';
@@ -107,6 +108,9 @@ const Main = () => {
 
                             <Rating precision={0.5} name="read-only" value={product.rating} readOnly />
                         </CardActions>
+                        <Link to={`/product/${product.id}`}>
+                            <Button variant="contained" color="primary">View Details</Button>
+                        </Link>
                     </Card>
                 ))}
             </Stack>
