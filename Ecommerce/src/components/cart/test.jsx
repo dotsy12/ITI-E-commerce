@@ -40,6 +40,7 @@ const Carte = () => {
   const handleEmptyCart = () => {
     setCartItems([]);
     localStorage.setItem("cart", JSON.stringify([]));
+    localStorage.setItem("cartIds", JSON.stringify([]));
   };
 
   return (
