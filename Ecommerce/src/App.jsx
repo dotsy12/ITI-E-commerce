@@ -17,7 +17,7 @@ import { allProducts } from "./products";
 import AddProduct from "./components/CreateNewProduct/CreateNewProduct";
 import AboutUs from "./pages/AboutUs";
 import Service from "./pages/Service";
-import ProductDetail from "components/ProductDitPage/ProductDitPage";
+import ProductDetail from "components/ProductDitPage/moreDetails";
 
 
 function App() {
