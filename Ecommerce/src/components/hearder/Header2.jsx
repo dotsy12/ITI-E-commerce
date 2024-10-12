@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
@@ -75,6 +75,7 @@ const options = [
 const Header2 = () => {
 
   const [anchorEl, setAnchorEl] = useState(null);
+  const [cartCount, setCartCount] = useState(0)
   const [selectedIndex, setSelectedIndex] = useState(0);
   const open = Boolean(anchorEl);
   const handleClickListItem = (event) => {
@@ -93,6 +94,13 @@ const Header2 = () => {
   };
 
   const theme = useTheme();
+
+  useEffect(() => {
+    const cartIds = JSON.parse(localStorage.getItem("cartIds"));
+    setCartCount(cartIds.length);
+    console.log(cartIds.length)
+    console.log(cartIds)
+  }, [cartCount])
 
   return (
     <Container sx={{ my: 3, display: "flex", justifyContent: "space-between" }}>
@@ -162,7 +170,7 @@ const Header2 = () => {
       <Stack direction={"row"} alignItems={"center"}>
         <Link to='/cart'>
         <IconButton aria-label="cart">
-          <StyledBadge badgeContent={4} color="primary">
+          <StyledBadge badgeContent={+cartCount} color="primary">
             <ShoppingCartIcon />
           </StyledBadge>
         </IconButton>

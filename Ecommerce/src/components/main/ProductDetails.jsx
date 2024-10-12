@@ -1,14 +1,26 @@
 /* eslint-disable react/prop-types */
 import { Box, Button, Stack, Typography } from "@mui/material";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useEffect, useState } from "react";
 
 const ProductDetails = ({ product }) => {
+    const [inCart, setInCart] = useState(false);
+
+    useEffect(() => {
+        const cartIds = JSON.parse(localStorage.getItem("cartIds")) || [];
+        const isInCart = cartIds.some(thisId => thisId == product.id);
+        if (isInCart) {
+            setInCart(true)
+        }
+
+    }, []);
+
     const handelAddToCart = (product) => {
         // Retrieve existing cart items from localStorage
         const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
 
         // Check if the product is already in the cart
-        const isInCart = cartItems.some(item => item.id === product.id);
+        const isInCart = cartItems.some(item => item.id == product.id);
 
         // Add the product to the cart if it's not already there
         let updatedCartItems = [];
@@ -17,9 +29,18 @@ const ProductDetails = ({ product }) => {
         } else {
             updatedCartItems = [...cartItems, product]; // Add new product to the cart
         }
-
-        // Store the updated cart back to localStorage
         localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+
+        setInCart(true)
+
+        const cartIds = JSON.parse(localStorage.getItem("cartIds")) || [];
+        let updatedCartIds = [];
+        if (isInCart) {
+            updatedCartIds = cartIds;
+        } else {
+            updatedCartIds = [...cartIds, product.id];
+        }
+        localStorage.setItem("cartIds", JSON.stringify(updatedCartIds));
     };
 
 
@@ -53,7 +74,7 @@ const ProductDetails = ({ product }) => {
 
                 <Button sx={{ mb: { xs: 1, sm: 0 }, textTransform: "capitalize" }} variant="contained" onClick={() => handelAddToCart(product)}>
                     <AddShoppingCartIcon sx={{ mr: 1 }} fontSize="small" />
-                    Buy Now
+                    {inCart? "In Cart" : "Buy Now"}
                 </Button>
             </Box>
         </Box>
