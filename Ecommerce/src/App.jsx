@@ -17,6 +17,8 @@ import { allProducts } from "./products";
 import AddProduct from "./components/CreateNewProduct/CreateNewProduct";
 import AboutUs from "./pages/AboutUs";
 import Service from "./pages/Service";
+import ProductDetail from "components/ProductDitPage/ProductDitPage";
+
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -56,6 +58,7 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/add" element={<AddProduct />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
             </Routes>
           </Box>
           <Footer />

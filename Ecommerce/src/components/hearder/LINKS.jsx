@@ -58,7 +58,7 @@ const LINKS = ({ title }) => {
                                             <List>
                                                 <ListItem disablePadding>
                                                     <ListItemButton>
-                                                        <Link to='add'>
+                                                        <Link to='/add' style={{textDecoration: "none", color: "white"}}>
                                                             <ListItemText primary="Add Product" />
                                                         </Link>
                                                     </ListItemButton>
