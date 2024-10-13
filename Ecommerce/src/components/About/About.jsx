@@ -73,6 +73,7 @@ const About = () => {
             {/* Explore More About Us Accordion */}
             <Container maxWidth="sm" sx={{ py: 6 }}>
                 <Accordion
+                    // @ts-ignore
                     expanded={expanded === 'panel1'}
                     onChange={handleAccordionChange('panel1')}
                     sx={{ borderRadius: '8px', boxShadow: 3, mb: 2 }}

@@ -120,6 +120,7 @@ const Header2 = () => {
           <List
             component="nav"
             aria-label="Device settings"
+            // @ts-ignore
             sx={{ bgcolor: theme.palette.myColor.main, borderBottomRightRadius: 22, borderTopRightRadius: 22, p: 0 }}
           >
             <ListItem

@@ -7,7 +7,7 @@ import { useState } from "react";
 import WindowIcon from '@mui/icons-material/Window';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useTheme } from "@emotion/react";
+import { useTheme} from "@emotion/react";
 import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
 import DevicesIcon from '@mui/icons-material/Devices';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
@@ -123,11 +123,40 @@ const Header3 = () => {
 
       {useMediaQuery('(min-width:1200px)') && (
         <Stack gap={10} direction={"row"} alignItems={"center"}>
-          <Link to='/' style={{ textDecoration: 'none', color: 'black' }} className="header">{"Home"}</Link>
+          
+
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Button  component={Link} to="/" sx={{ color: theme.palette.text.primary }}>
+              Home
+              </Button>
+          </Box>
+          
           <LINKS title={"Pages"} />
-          <Link to='/about' style={{ textDecoration: 'none', color: 'black' }} className="header">{"About us"}</Link>
-          <Link to='/contact' style={{ textDecoration: 'none', color: 'black' }} className="header">{"Contact us"}</Link>
-          <Link to='/profile' style={{ textDecoration: 'none', color: 'black' }} className="header">{"Profile"}</Link>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          
+              <Button  component={Link} to="/about" sx={{ color: theme.palette.text.primary }}>
+                About us
+              </Button>
+          
+          </Box>
+
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          
+              <Button  component={Link} to="/contact" sx={{ color: theme.palette.text.primary }}>
+              Contact us
+              </Button>
+          
+          </Box>
+
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          
+              <Button  component={Link} to="/profile" sx={{ color: theme.palette.text.primary }}>
+              Profile
+              </Button>
+          
+          </Box>
+          {/* <Link to='/about' style={{ textDecoration: 'none', color: 'black' }} className="header">{"About us"}</Link> */}
+          
         </Stack>
 
       )}
