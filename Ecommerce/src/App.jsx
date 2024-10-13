@@ -17,7 +17,10 @@ import { allProducts } from "./products";
 import AddProduct from "./components/CreateNewProduct/CreateNewProduct";
 import AboutUs from "./pages/AboutUs";
 import Service from "./pages/Service";
-import ProductDetail from "components/ProductDitPage/ProductDitPage";
+import ProductDetail from "components/ProductDitPage/moreDetails";
+import Profile from "./pages/Profile";
+import EditProf from "./pages/EditProf";
+import Gallery from './components/gallery/Gallery';
 
 
 function App() {
@@ -52,6 +55,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
+              <Route path="/gallery" element={<Gallery />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/services" element={<Service />} />
               <Route path="/contact" element={<ContactUs />} />
@@ -59,6 +63,8 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/add" element={<AddProduct />} />
               <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/edit-profile" element={<EditProf />} />
             </Routes>
           </Box>
           <Footer />

@@ -127,6 +127,7 @@ const Header3 = () => {
           <LINKS title={"Pages"} />
           <Link to='/about' style={{ textDecoration: 'none', color: 'black' }} className="header">{"About us"}</Link>
           <Link to='/contact' style={{ textDecoration: 'none', color: 'black' }} className="header">{"Contact us"}</Link>
+          <Link to='/profile' style={{ textDecoration: 'none', color: 'black' }} className="header">{"Profile"}</Link>
         </Stack>
 
       )}

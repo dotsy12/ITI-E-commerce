@@ -6,6 +6,7 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const Carte = () => {
+  
   const [cartItems, setCartItems] = useState([]);
   const [coupon, setCoupon] = useState('');
 

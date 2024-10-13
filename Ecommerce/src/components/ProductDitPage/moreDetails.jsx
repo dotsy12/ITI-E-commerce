@@ -4,79 +4,63 @@ import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Header2 from 'components/hearder/Header2';
 import Header3 from 'components/hearder/Header3';
-// import Header3 from 'components/hearder/Header3';
-// import { Link } from 'react-router-dom'; // To create the link
+import useAuthCheck from '../LoginSignup/useAuthCheck '; // Adjust the import path as needed
 
 const ProductDetail = () => {
     const [tabValue, setTabValue] = useState(0);
     const [inCart, setInCart] = useState(false);
-    const { id } = useParams();  // Get product id from URL
+    const { id } = useParams(); // Get product id from URL
+    const { checkLoginBeforeAction, LoginDialog } = useAuthCheck(); // Use the authentication check hook
 
     useEffect(() => {
         const cartIds = JSON.parse(localStorage.getItem("cartIds")) || [];
         const isInCart = cartIds.some(thisId => thisId == id);
-        console.log(isInCart)
-        console.log(id)
-        console.log(cartIds)
         if (isInCart) {
-            setInCart(true)
+            setInCart(true);
         }
-
-    }, []);
+    }, [id]);
 
     const handelAddToCart = (product) => {
-        // Retrieve existing cart items from localStorage
-        const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+        // The action to add to cart
+        const addToCart = () => {
+            const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+            const isInCart = cartItems.some(item => item.id == product.id);
 
-        // Check if the product is already in the cart
-        const isInCart = cartItems.some(item => item.id == product.id);
+            let updatedCartItems = [];
+            if (!isInCart) {
+                updatedCartItems = [...cartItems, product]; // Add new product to the cart
+            } else {
+                updatedCartItems = cartItems; // Product already in the cart, no change
+            }
 
-        // isInCart? setInCart(true) : setInCart(false);
+            localStorage.setItem("cart", JSON.stringify(updatedCartItems));
 
-        // Add the product to the cart if it's not already there
-        let updatedCartItems = [];
-        // setInCart(true)
-        if (isInCart) {
-            updatedCartItems = cartItems; // Product already in the cart, no change
-            // setInCart(false)
-        } else {
-            updatedCartItems = [...cartItems, product]; // Add new product to the cart
-        }
+            const cartIds = JSON.parse(localStorage.getItem("cartIds")) || [];
+            let updatedCartIds = [];
+            setInCart(true);
+            if (!isInCart) {
+                updatedCartIds = [...cartIds, id];
+            } else {
+                updatedCartIds = cartIds;
+            }
 
+            localStorage.setItem("cartIds", JSON.stringify(updatedCartIds));
+        };
 
-
-        // Store the updated cart back to localStorage
-        localStorage.setItem("cart", JSON.stringify(updatedCartItems));
-
-
-        const cartIds = JSON.parse(localStorage.getItem("cartIds")) || [];
-        let updatedCartIds = [];
-        // console.log(isInCart)
-        // console.log(id)
-        // console.log(cartIds)
-        setInCart(true)
-        if (isInCart) {
-            updatedCartIds = cartIds;
-        } else {
-            updatedCartIds = [...cartIds, id];
-        }
-
-        // Store the updated cart back to localStorage
-        localStorage.setItem("cartIds", JSON.stringify(updatedCartIds));
+        // Check if the user is logged in before adding to cart
+        checkLoginBeforeAction(addToCart);
     };
 
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue);
     };
 
-    // @ts-ignore
     const productDetails = useSelector((state) => state.products.products.find(product => product.id === parseInt(id)));
 
     // If product is not found
     if (!productDetails) {
         return <Typography variant="h6">Product not found!</Typography>;
     }
-
 
     return (
         <>
@@ -129,7 +113,7 @@ const ProductDetail = () => {
                                     color="error"
                                     sx={{ marginTop: 2, backgroundColor: '#d23f57' }}
                                     onClick={() => {
-                                        handelAddToCart(productDetails)
+                                        handelAddToCart(productDetails);
                                     }}
                                 >
                                     {inCart ? "In cart" : "Add To Cart"}
@@ -161,6 +145,9 @@ const ProductDetail = () => {
                     </Box>
                 </Paper>
             </Box>
+
+            {/* Render the LoginDialog from useAuthCheck */}
+            <LoginDialog />
         </>
     );
 };
