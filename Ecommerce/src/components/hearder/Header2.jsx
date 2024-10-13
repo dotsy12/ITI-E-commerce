@@ -69,7 +69,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 
 const options = [
-  "All Categories", "CAR", "Clothes", "Electronices"
+"All Categories","Clothes","Electronices","Toys","accessories"
 ];
 
 const Header2 = () => {
