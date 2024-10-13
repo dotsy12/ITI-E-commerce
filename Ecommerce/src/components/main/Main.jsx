@@ -101,7 +101,7 @@ const Main = () => {
                                 <Rating precision={0.5} name="read-only" value={product.rating} readOnly />
                             </CardContent>
                             <CardActions sx={{ justifyContent: "center" }}>
-                                <Button onClick={() => handleClickOpen(product)} variant="outlined" startIcon={<AddShoppingCartIcon />}>
+                                <Button onClick={() => handleClickOpen(product)} variant="outlined" color="error" startIcon={<AddShoppingCartIcon />}>
                                     Add To Cart
                                 </Button>
                             </CardActions>
