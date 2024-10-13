@@ -4,16 +4,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LogoutIcon from '@mui/icons-material/Logout'; // Import Logout icon
 import { useEffect, useState } from "react";
-
 import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { ExpandMore } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-
-
 
 const Search = styled('div')(({ theme }) => ({
   flexGrow: 0.4,
@@ -43,7 +41,6 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   color: "#777"
 }));
 
-
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
@@ -67,24 +64,21 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-
 const options = [
   "All Categories", "CAR", "Clothes", "Electronices"
 ];
 
 const Header2 = () => {
-
   const [anchorEl, setAnchorEl] = useState(null);
-  const [cartCount, setCartCount] = useState(0)
+  const [cartCount, setCartCount] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const open = Boolean(anchorEl);
+
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (
-    event, index,
-  ) => {
+  const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setAnchorEl(null);
   };
@@ -97,18 +91,20 @@ const Header2 = () => {
 
   useEffect(() => {
     const cartIds = JSON.parse(localStorage.getItem("cartIds"));
-    setCartCount(cartIds.length);
-    console.log(cartIds.length)
-    console.log(cartIds)
-  }, [cartCount])
+    setCartCount(cartIds ? cartIds.length : 0); // Handle case when cartIds is null
+  }, [cartCount]);
+
+  const handleSignOut = () => {
+    // Optional: Clear user data from localStorage or perform any other sign out logic
+    localStorage.removeItem("userData"); // Remove user data
+    // Redirect to login page (if necessary)
+  };
 
   return (
     <Container sx={{ my: 3, display: "flex", justifyContent: "space-between" }}>
       <Stack alignItems={"center"}>
-        {/* <Link to='/' style={{color: "white"}}> */}
         <ShoppingCartIcon />
         <Typography variant="body2"> Ecommerce</Typography>
-        {/* </Link> */}
       </Stack>
 
       <Search
@@ -120,12 +116,10 @@ const Header2 = () => {
           placeholder="Search…"
           inputProps={{ 'aria-label': 'search' }}
         />
-
         <div>
           <List
             component="nav"
             aria-label="Device settings"
-            // @ts-ignore
             sx={{ bgcolor: theme.palette.myColor.main, borderBottomRightRadius: 22, borderTopRightRadius: 22, p: 0 }}
           >
             <ListItem
@@ -140,7 +134,7 @@ const Header2 = () => {
                 sx={{ width: 95, textAlign: "center", "&:hover": { cursor: "pointer" } }}
                 secondary={options[selectedIndex]}
               />
-              <ExpandMore sx={{ fontSize: "16px" }}></ExpandMore>
+              <ExpandMore sx={{ fontSize: "16px" }} />
             </ListItem>
           </List>
           <Menu
@@ -169,22 +163,28 @@ const Header2 = () => {
 
       <Stack direction={"row"} alignItems={"center"}>
         <Link to='/cart'>
-        <IconButton aria-label="cart">
-          <StyledBadge badgeContent={+cartCount} color="primary">
-            <ShoppingCartIcon />
-          </StyledBadge>
-        </IconButton>
-        </Link>
-
-        <Link to='/login'>
-          <IconButton>
-            <AccountCircleIcon></AccountCircleIcon>
+          <IconButton aria-label="cart">
+            <StyledBadge badgeContent={+cartCount} color="primary">
+              <ShoppingCartIcon />
+            </StyledBadge>
           </IconButton>
         </Link>
 
-      </Stack >
+        <Link to='/profile'>
+          <IconButton>
+            <AccountCircleIcon />
+          </IconButton>
+        </Link>
 
+        {/* Add Sign Out Icon */}
+        <Link to='/login' onClick={handleSignOut}>
+          <IconButton>
+            <LogoutIcon />
+          </IconButton>
+        </Link>
+      </Stack>
     </Container>
-  )
+  );
 }
+
 export default Header2;

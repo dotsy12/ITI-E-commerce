@@ -18,6 +18,8 @@ import AddProduct from "./components/CreateNewProduct/CreateNewProduct";
 import AboutUs from "./pages/AboutUs";
 import Service from "./pages/Service";
 import ProductDetail from "components/ProductDitPage/moreDetails";
+import Profile from "./pages/Profile";
+import EditProf from "./pages/EditProf";
 
 
 function App() {
@@ -59,6 +61,8 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/add" element={<AddProduct />} />
               <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/edit-profile" element={<EditProf />} />
             </Routes>
           </Box>
           <Footer />
