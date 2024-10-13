@@ -8,12 +8,12 @@ import Footer from "./components/footer/Footer";
 import Home from "./pages/Home";
 import Cart from "components/cart/Cart";
 import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";  
+import SignupPage from "./pages/SignupPage";
 import ContactUs from "./pages/ContactUs";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setProducts } from "./redux/productSlice";
-import { allProducts } from "./products";
+// import { allProducts } from "./products";
 import AddProduct from "./components/CreateNewProduct/CreateNewProduct";
 import AboutUs from "./pages/AboutUs";
 import Service from "./pages/Service";
@@ -28,12 +28,14 @@ function App() {
   // @ts-ignore
 
   const dispatch = useDispatch();
-    // @ts-ignore
-    // Fake API call or data fetch to simulate fetching products from an API
-    useEffect(() => {
-        
-        dispatch(setProducts(allProducts)); // Set fetched products to the Redux store
-    }, [dispatch]);
+  // @ts-ignore
+  // Fake API call or data fetch to simulate fetching products from an API
+  useEffect(() => {
+    // dispatch(setProducts(allProducts)); // Set fetched products to the Redux store
+    fetch('http://localhost:5000/products')
+      .then(response => response.json())
+      .then(data => dispatch(setProducts(data)));
+  }, [dispatch]);
 
   return (
     <ColorModeContext.Provider

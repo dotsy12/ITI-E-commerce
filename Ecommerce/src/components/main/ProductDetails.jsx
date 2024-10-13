@@ -3,6 +3,7 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useEffect, useState } from "react";
 import useAuthCheck from "../LoginSignup/useAuthCheck "; // Make sure the path is correct
+import { images } from "../../images";
 
 const ProductDetails = ({ product }) => {
     const [inCart, setInCart] = useState(false);
@@ -12,6 +13,7 @@ const ProductDetails = ({ product }) => {
     useEffect(() => {
         const cartIds = JSON.parse(localStorage.getItem("cartIds")) || [];
         const isInCart = cartIds.some(thisId => thisId == product.id);
+        console.log(product.id)
         if (isInCart) {
             setInCart(true);
         }
@@ -49,13 +51,13 @@ const ProductDetails = ({ product }) => {
     return (
         <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, flexDirection: { xs: "column", sm: "row" } }}>
             <Box sx={{ display: "flex" }}>
-                <img width={300} src={product.image} alt={product.name} />
+                <img width={300} src={typeof (product.Image) === 'string' ? product.image : images[product.image]} alt={product.name} />
             </Box>
 
             <Box sx={{ textAlign: { xs: "center", sm: "left" } }}>
                 <Typography variant="h5">{product.name}</Typography>
                 <Typography my={0.4} fontSize={"22px"} color={"crimson"} variant="h2">
-                    ${product.price.toFixed(2)}
+                ${product.price ? product.price.toFixed(2) : 'N/A'}
                 </Typography>
                 <Typography variant="body1">
                     {product.description}
@@ -68,7 +70,7 @@ const ProductDetails = ({ product }) => {
                             style={{ borderRadius: 3 }}
                             height={100}
                             width={90}
-                            src={img}
+                            src={typeof (img) === 'string' ? img : images[img]}
                             alt={`gallery-${index}`}
                         />
                     ))}

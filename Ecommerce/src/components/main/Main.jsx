@@ -12,6 +12,7 @@ import { Close, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import ProductDetails from "./ProductDetails";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { images } from '../../images';
 
 const Main = () => {
     const [alignment, setAlignment] = useState('left');
@@ -22,6 +23,7 @@ const Main = () => {
     const theme = useTheme();
     // @ts-ignore
     const products = useSelector((state) => state.products.products);
+    // console.log(products)
 
     const handleAlignment = (event, newAlignment) => {
         setAlignment(newAlignment);
@@ -88,7 +90,7 @@ const Main = () => {
                         <Card key={product.id} sx={{ minWidth: 250, maxWidth: 300 }}>
                             <CardMedia
                                 sx={{ height: 200 }}
-                                image={product.image}
+                                image={typeof(product.Image) === 'string'? product.image :  images[product.image]}
                                 title={product.name}
                             />
                             <CardContent>
@@ -96,7 +98,7 @@ const Main = () => {
                                     {product.name}
                                 </Typography>
                                 <Typography variant="subtitle1" component="p">
-                                    ${product.price.toFixed(2)}
+                                ${product.price ? product.price.toFixed(2) : 'N/A'}
                                 </Typography>
                                 <Rating precision={0.5} name="read-only" value={product.rating} readOnly />
                             </CardContent>

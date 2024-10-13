@@ -11,6 +11,7 @@ import { Close } from "@mui/icons-material";
 import ProductDetails from "../main/ProductDetails";
 import { useSelector } from "react-redux"; // Import hooks
 import { Link } from "react-router-dom";
+import { images } from '../../images';
 // import { setProducts } from "../../redux/productSlice"; // Import the action from the product slice
 
 // import { allProducts } from '../../products';
@@ -83,7 +84,7 @@ const Gallery = () => {
                     <Card key={product.id} sx={{ maxWidth: 333, mt: 6, ":hover .MuiCardMedia-root": { rotate: "1deg", scale: "1.1", transition: "0.35s" } }}>
                         <CardMedia
                             sx={{ height: 240 }}
-                            image={product.image}
+                            image={typeof(product.Image) === 'string'? product.image :  images[product.image]}
                             title={product.name}
                         />
                         <CardContent>
@@ -92,7 +93,7 @@ const Gallery = () => {
                                     {product.name}
                                 </Typography>
                                 <Typography variant="subtitle1" component="p">
-                                    ${product.price.toFixed(2)}
+                                ${product.price ? product.price.toFixed(2) : 'N/A'}
                                 </Typography>
                             </Stack>
                             <Typography variant="body2" color="text.secondary">

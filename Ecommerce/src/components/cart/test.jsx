@@ -4,9 +4,10 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { images } from '../../images';
 
 const Carte = () => {
-  
+
   const [cartItems, setCartItems] = useState([]);
   const [coupon, setCoupon] = useState('');
 
@@ -69,7 +70,9 @@ const Carte = () => {
                 {cartItems.map((item) => (
                   <TableRow key={item.id}>
                     <TableCell>
-                      <img src={item.image} alt={item.name} style={{ width: '100px', height: 'auto' }} />
+
+                      <img src={typeof (item.Image) === 'string' ? item.image : images[item.image]}
+                        alt={item.name} style={{ width: '100px', height: 'auto' }} />
                     </TableCell>
                     <TableCell>
                       <Typography variant="subtitle1">{item.name}</Typography>
