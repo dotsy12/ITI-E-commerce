@@ -1,4 +1,5 @@
 import ExclusiveCollections from "components/ExclusiveCollections/ExclusiveCollections"
+import Icon from "components/Icons/Icon"
 import PromotionBanner from "components/PromotionBanner/PromotionBanner"
 import Header1 from "components/hearder/Header1"
 import Header2 from "components/hearder/Header2"
@@ -16,7 +17,9 @@ const Home = () => {
             <Section />
             <Hero />
             <Main />
+            
             <ExclusiveCollections />
+            <Icon/>
             <PromotionBanner/>
             {/* here will be other home components like for you products */}
         </>
