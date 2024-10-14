@@ -67,7 +67,8 @@ function App() {
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path="/add" element={<AddProduct />} />
+              <Route path="/manager/add" element={<AddProduct />} /> {/*  insinde the manager page that will be made */}
+              <Route path="/manager" element={<AddProduct />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/edit-profile" element={<EditProf />} />
