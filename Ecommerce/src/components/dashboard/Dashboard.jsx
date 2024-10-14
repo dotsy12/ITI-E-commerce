@@ -19,7 +19,7 @@ const Dashboard = () => {
   const [editProductId, setEditProductId] = useState(null);
   const [updatedProduct, setUpdatedProduct] = useState({});
   const products = useSelector((state) => state.products.products);
-  const [sortDirection, setSortDirection] = useState("asc");
+  // const [sortDirection, setSortDirection] = useState("asc");
 
  
 
