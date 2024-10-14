@@ -1,8 +1,60 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": "df6f",
+      "creatorId": 1,
+      "name": "amir@gmail.com",
+      "email": "amir@gmail.com",
+      "password": "amir@gmail.com1",
+      "adminUser": true
+    },
+    {
+      "id": "c534",
+      "name": "test",
+      "email": "test1@gmail.com",
+      "password": "test1@gmail.com",
+      "adminUser": false
+    },
+    {
+      "id": "756f",
+      "name": "a@gmail.com",
+      "email": "test11@gmail.com",
+      "password": "test11@gmail.com",
+      "adminUser": true
+    },
+    {
+      "id": "f4f1",
+      "name": "botato",
+      "email": "botato5@gmail.com",
+      "password": "botato5@gmail.com",
+      "adminUser": false
+    },
+    {
+      "id": "e471",
+      "name": "TEST",
+      "email": "test1111@gmail.com",
+      "password": "test1111@gmail.com",
+      "adminUser": true
+    },
+    {
+      "id": "f031",
+      "name": "aa",
+      "email": "aaa1@gmail.com",
+      "password": "aaa1@gmail.com",
+      "adminUser": true
+    },
+    {
+      "id": "7f4e",
+      "name": "test555@gmail.com",
+      "email": "test555@gmail.com",
+      "password": "test555@gmail.com",
+      "adminUser": true
+    }
+  ],
   "products": [
     {
       "id": 1,
+      "creatorId": 1,
       "name": "T-Shirt 1",
       "price": 15.99,
       "description": "Comfortable cotton T-shirt",
@@ -16,6 +68,7 @@
     },
     {
       "id": 2,
+      "creatorId": 1,
       "name": "T-Shirt 2",
       "price": 16.99,
       "description": "Graphic T-shirt with cool print",
@@ -29,6 +82,7 @@
     },
     {
       "id": 3,
+      "creatorId": 1,
       "name": "Jeans",
       "price": 39.99,
       "description": "Slim-fit blue jeans",
@@ -42,6 +96,7 @@
     },
     {
       "id": 4,
+      "creatorId": 1,
       "name": "Sneakers",
       "price": 59.99,
       "description": "Stylish sneakers for everyday wear",
@@ -55,6 +110,7 @@
     },
     {
       "id": 5,
+      "creatorId": 1,
       "name": "Hoodie",
       "price": 34.99,
       "description": "Warm and comfortable hoodie",
@@ -68,6 +124,7 @@
     },
     {
       "id": 6,
+      "creatorId": 1,
       "name": "Cap",
       "price": 14.99,
       "description": "Trendy cap for sunny days",
@@ -81,6 +138,7 @@
     },
     {
       "id": 7,
+      "creatorId": 1,
       "name": "T-Shirt 3",
       "price": 17.99,
       "description": "Classic round neck T-shirt",
@@ -94,6 +152,7 @@
     },
     {
       "id": 8,
+      "creatorId": 1,
       "name": "T-Shirt 4",
       "price": 18.99,
       "description": "Casual short-sleeve T-shirt",
@@ -107,6 +166,7 @@
     },
     {
       "id": 9,
+      "creatorId": 1,
       "name": "T-Shirt 5",
       "price": 19.99,
       "description": "Comfortable printed T-shirt",
@@ -120,6 +180,7 @@
     },
     {
       "id": 10,
+      "creatorId": 1,
       "name": "Polo Shirt",
       "price": 25.99,
       "description": "Classic polo shirt for a smart look",
@@ -133,6 +194,7 @@
     },
     {
       "id": 11,
+      "creatorId": 1,
       "name": "Tank Top",
       "price": 12.99,
       "description": "Lightweight tank top for summer",
@@ -146,6 +208,7 @@
     },
     {
       "id": 12,
+      "creatorId": 1,
       "name": "Button-Up Shirt",
       "price": 29.99,
       "description": "Formal button-up shirt for office wear",
@@ -159,6 +222,7 @@
     },
     {
       "id": 13,
+      "creatorId": 1,
       "name": "Sweatshirt",
       "price": 29.99,
       "description": "Cozy sweatshirt for chilly days",
@@ -172,6 +236,7 @@
     },
     {
       "id": 14,
+      "creatorId": 1,
       "name": "Joggers",
       "price": 34.99,
       "description": "Comfortable joggers for lounging",
@@ -185,6 +250,7 @@
     },
     {
       "id": 15,
+      "creatorId": 1,
       "name": "Shorts",
       "price": 24.99,
       "description": "Casual shorts for summer days",
@@ -198,6 +264,7 @@
     },
     {
       "id": 16,
+      "creatorId": 1,
       "name": "Windbreaker",
       "price": 39.99,
       "description": "Lightweight windbreaker jacket",
@@ -211,6 +278,7 @@
     },
     {
       "id": 17,
+      "creatorId": 1,
       "name": "Pajama Set",
       "price": 35.99,
       "description": "Cozy pajama set for a good night's sleep",
@@ -224,6 +292,7 @@
     },
     {
       "id": 18,
+      "creatorId": 1,
       "name": "Swim Shorts",
       "price": 29.99,
       "description": "Stylish swim shorts for the beach",
@@ -237,6 +306,7 @@
     },
     {
       "id": 19,
+      "creatorId": 1,
       "name": "Beanie",
       "price": 14.99,
       "description": "Warm beanie for winter",
@@ -250,6 +320,7 @@
     },
     {
       "id": 20,
+      "creatorId": 1,
       "name": "Scarf",
       "price": 19.99,
       "description": "Soft scarf for cold weather",
@@ -263,6 +334,7 @@
     },
     {
       "id": 21,
+      "creatorId": 1,
       "name": "T-Shirt 6",
       "price": 15.99,
       "description": "Comfortable cotton T-shirt",
@@ -276,6 +348,7 @@
     },
     {
       "id": 22,
+      "creatorId": 1,
       "name": "T-Shirt 7",
       "price": 15.99,
       "description": "Comfortable cotton T-shirt",
@@ -289,6 +362,7 @@
     },
     {
       "id": 23,
+      "creatorId": 1,
       "name": "T-Shirt 8",
       "price": 15.99,
       "description": "Comfortable cotton T-shirt",
@@ -302,6 +376,7 @@
     },
     {
       "id": 24,
+      "creatorId": 1,
       "name": "T-Shirt 9",
       "price": 15.99,
       "description": "Comfortable cotton T-shirt",
@@ -315,6 +390,7 @@
     },
     {
       "id": 1728917786373,
+      "creatorId": 1,
       "name": "TEst",
       "description": "test description for finding bugs",
       "price": 100,
