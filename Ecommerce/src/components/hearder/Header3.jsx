@@ -169,54 +169,63 @@ const Header3 = () => {
         </IconButton>
       )}
 
-      <Drawer
-        anchor={"top"}
-        open={state["top"]}
-        onClose={toggleDrawer("top", false)}
-        sx={{ ".MuiPaper-root.css-12cfoy0-MuiPaper-root-MuiDrawer-paper   ": { height: "100%" } }}
-      >
-        <Box sx={{ width: 444, mx: "auto", mt: 6, position: "relative", pt: 10 }}>
-          <IconButton sx={{ ":hover": { color: "red", rotate: "360deg", transition: "0.3s" }, position: "absolute", top: 0, right: 10 }} onClick={toggleDrawer("top", false)} >
-            <Close />
-          </IconButton>
-          {[
-            { mainLink: "Home", subLink: ["Market", "Gadget", "fashion"] },
-            { mainLink: "menu", subLink: ["User Account", "Products", "Orders", "Sale Page"] },
-            { mainLink: "Fullscreen menu", subLink: ["Electronics", "Fashion", "Book", "Sports"] },
-            { mainLink: "pages", subLink: ["Sale page", "Shop", "Vendor"] },
-          ].map((item) => {
-            return (
-              <Accordion key={item.mainLink} elevation={0} sx={{ bgcolor: "initial" }}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1-content"
-                  id="panel1-header"
-                >
-                  {item.mainLink}
-                </AccordionSummary>
-                <List sx={{ py: 0, my: 0 }}>
+<Drawer
+  anchor={"top"}
+  open={state["top"]}
+  onClose={toggleDrawer("top", false)}
+  sx={{ ".MuiPaper-root.css-12cfoy0-MuiPaper-root-MuiDrawer-paper": { height: "100%" } }}
+>
+  <Box sx={{ width: 444, mx: "auto", mt: 6, position: "relative", pt: 10 }}>
+    <IconButton
+      sx={{
+        ":hover": { color: "red", rotate: "360deg", transition: "0.3s" },
+        position: "absolute",
+        top: 0,
+        right: 10,
+      }}
+      onClick={toggleDrawer("top", false)}
+    >
+      <Close />
+    </IconButton>
+    
+    <List sx={{ py: 0, my: 0 }}>
+      {[
+        { mainLink: "Home", link: "/" },
+        { mainLink: "About us", link: "/about" },
+        { mainLink: "Contact us", link: "/contact" },
+        { mainLink: "Profile", link: "/profile" },
+      ].map((item) => (
+        <ListItem key={item.mainLink} sx={{ py: 0, my: 0 }}>
+          <ListItemButton component={Link} to={item.link} sx={{ textDecoration: 'none', color: 'inherit' }}>
+            <ListItemText primary={item.mainLink} />
+          </ListItemButton>
+        </ListItem>
+      ))}
 
-                  {item.subLink.map((link) => {
-                    return (
-                      <ListItem key={(link)} sx={{ py: 0, my: 0 }} >
-                        <ListItemButton>
-                          <ListItemText primary={link} />
-                        </ListItemButton>
-                      </ListItem>
-                    )
+      {/* The expandable "pages" section */}
+      <Accordion elevation={0} sx={{ ml:2, bgcolor: "initial" }}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />} // Expand icon only for "pages"
+          aria-controls="pages-content"
+          id="pages-header"
+        >
+          Pages
+        </AccordionSummary>
+        <List sx={{ py: 0, my: 0 }}>
+          {["Add Product", "Edit Product"].map((link) => (
+            <ListItem key={link} sx={{ py: 0, my: 0 }}>
+              <ListItemButton>
+                <ListItemText primary={link} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Accordion>
+    </List>
+  </Box>
+</Drawer>
 
-                  })}
 
-
-                </List>
-              </Accordion>
-            )
-          })}
-
-
-
-        </Box >
-      </Drawer>
     </Container>
   )
 }
