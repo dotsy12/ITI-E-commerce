@@ -21,6 +21,7 @@ import ProductDetail from "components/ProductDitPage/moreDetails";
 import Profile from "./pages/Profile";
 import EditProf from "./pages/EditProf";
 import Gallery from './components/gallery/Gallery';
+import Dashboard from "components/dashboard/Dashboard";
 import { setUsers } from "./redux/userSlice";
 
 
@@ -60,6 +61,8 @@ function App() {
               {/* <Route path="/" element={<Hero />} /> */}
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/about" element={<AboutUs />} />
