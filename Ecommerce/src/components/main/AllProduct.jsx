@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { images } from '../../images';
 
-const Main = () => {
+const AllProduct = () => {
     const [alignment, setAlignment] = useState('left');
     const [open, setOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -53,7 +53,7 @@ const Main = () => {
     return (
         <Container sx={{ py: 9, mt: 1 }}>
             <Box display={'flex'} alignItems={"center"} justifyContent={"space-between"}>
-            <Typography variant="h5" sx={{ mb: 4 }}>Deals Of The Day</Typography>
+            <Typography variant="h5" sx={{ mb: 4 }}>All Products</Typography>
             <Box sx={{  display: 'flex', justifyContent: 'flex-end' }}>
                 <Button variant="contained" color="error" component={Link} to="/gallery">
                     More Products
@@ -137,4 +137,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default AllProduct;

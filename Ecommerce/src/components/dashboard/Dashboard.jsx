@@ -19,6 +19,9 @@ const Dashboard = () => {
   const [editProductId, setEditProductId] = useState(null);
   const [updatedProduct, setUpdatedProduct] = useState({});
   const products = useSelector((state) => state.products.products);
+  const [sortDirection, setSortDirection] = useState("asc");
+
+ 
 
   // Filter products based on the selected category and search query
   const filteredProducts = products
