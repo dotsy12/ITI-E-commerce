@@ -176,18 +176,18 @@ const Header2 = () => {
           </IconButton>
         </Link>
 
-        <Link to='/profile'>
+        <Link to={isLoggedIn ? '/profile' : '/login'}>
           <IconButton>
             <AccountCircleIcon />
           </IconButton>
         </Link>
 
         {/* Add Sign Out Icon */}
-        <Link to={!isLoggedIn && '/login'} onClick={isLoggedIn && handleSignOut}>
+        {isLoggedIn && <Link to={!isLoggedIn && '/login'} onClick={isLoggedIn && handleSignOut}>
           <IconButton>
             <LogoutIcon />
           </IconButton>
-        </Link>
+        </Link>}
       </Stack>
     </Container>
   );

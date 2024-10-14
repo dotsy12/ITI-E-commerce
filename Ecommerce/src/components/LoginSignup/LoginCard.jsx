@@ -27,6 +27,7 @@ const LoginCard = () => {
         e.preventDefault();
         if (isEmailValid && password) {
             await dispatch(loginUser({ email, password }));
+            sessionStorage.setItem("userData", JSON.stringify({ name: "amir", email, password }))
         }
     };
 

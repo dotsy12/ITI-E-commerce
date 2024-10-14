@@ -42,6 +42,13 @@
       "email": "aaa1@gmail.com",
       "password": "aaa1@gmail.com",
       "adminUser": true
+    },
+    {
+      "id": "7f4e",
+      "name": "test555@gmail.com",
+      "email": "test555@gmail.com",
+      "password": "test555@gmail.com",
+      "adminUser": true
     }
   ],
   "products": [
