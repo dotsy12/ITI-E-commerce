@@ -21,6 +21,7 @@ import ProductDetail from "components/ProductDitPage/moreDetails";
 import Profile from "./pages/Profile";
 import EditProf from "./pages/EditProf";
 import Gallery from './components/gallery/Gallery';
+import { setUsers } from "./redux/userSlice";
 
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
     fetch('http://localhost:5000/products')
       .then(response => response.json())
       .then(data => dispatch(setProducts(data)));
+    fetch('http://localhost:5000/users')
+      .then(response => response.json())
+      .then(data => dispatch(setUsers(data)));
   }, [dispatch]);
 
   return (
