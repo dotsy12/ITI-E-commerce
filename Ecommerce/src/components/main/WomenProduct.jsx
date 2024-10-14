@@ -1,4 +1,3 @@
-
 import { Box, Button, Container, Dialog, IconButton, Rating, Stack, Typography, useTheme } from "@mui/material";
 import { useState, useRef } from "react";
 import ToggleButton from '@mui/material/ToggleButton';
@@ -14,7 +13,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { images } from '../../images';
 
-const Main = () => {
+const WomenProduct = () => {
     const [alignment, setAlignment] = useState('left');
     const [open, setOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -23,7 +22,10 @@ const Main = () => {
     const theme = useTheme();
     // @ts-ignore
     const products = useSelector((state) => state.products.products);
-    // console.log(products)
+    // تصفية المنتجات بناءً على الفئة "Unisex" و "Women"
+    const filteredProducts = products.filter(
+        (product) => product.category === "Unisex" || product.category === "Women"
+    );
 
     const handleAlignment = (event, newAlignment) => {
         setAlignment(newAlignment);
@@ -53,14 +55,14 @@ const Main = () => {
     return (
         <Container sx={{ py: 9, mt: 1 }}>
             <Box display={'flex'} alignItems={"center"} justifyContent={"space-between"}>
-            <Typography variant="h5" sx={{ mb: 4 }}>Deals Of The Day</Typography>
-            <Box sx={{  display: 'flex', justifyContent: 'flex-end' }}>
-                <Button variant="contained" color="error" component={Link} to="/gallery">
-                    More Products
-                </Button>
+                <Typography variant="h5" sx={{ mb: 4 }}>Deals Of The Day</Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Button variant="contained" color="error" component={Link} to="/gallery">
+                        More Products
+                    </Button>
+                </Box>
             </Box>
-            </Box>
-           
+
             <Stack direction="row" alignItems="center" justifyContent="space-between">
                 <IconButton onClick={() => scrollCarousel("left")}>
                     <ArrowBackIos />
@@ -86,11 +88,11 @@ const Main = () => {
                     }}
                     ref={carouselRef}
                 >
-                    {products.map((product) => (
+                    {filteredProducts.map((product) => (
                         <Card key={product.id} sx={{ minWidth: 250, maxWidth: 300 }}>
                             <CardMedia
                                 sx={{ height: 200 }}
-                                image={typeof(product.Image) === 'string'? product.image :  images[product.image]}
+                                image={typeof(product.Image) === 'string' ? product.image : images[product.image]}
                                 title={product.name}
                             />
                             <CardContent>
@@ -98,7 +100,7 @@ const Main = () => {
                                     {product.name}
                                 </Typography>
                                 <Typography variant="subtitle1" component="p">
-                                ${product.price ? product.price.toFixed(2) : 'N/A'}
+                                    ${product.price ? product.price.toFixed(2) : 'N/A'}
                                 </Typography>
                                 <Rating precision={0.5} name="read-only" value={product.rating} readOnly />
                             </CardContent>
@@ -114,8 +116,6 @@ const Main = () => {
                     <ArrowForwardIos />
                 </IconButton>
             </Stack>
-
-          
 
             <Dialog
                 sx={{ ".MuiPaper-root": { minWidth: { xs: "100%", md: 800 } } }}
@@ -137,4 +137,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default WomenProduct;
