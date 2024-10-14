@@ -98,7 +98,7 @@ const Main = () => {
                                     {product.name}
                                 </Typography>
                                 <Typography variant="subtitle1" component="p">
-                                ${product.price ? product.price.toFixed(2) : 'N/A'}
+                                ${product.price ? product.price : 'N/A'}
                                 </Typography>
                                 <Rating precision={0.5} name="read-only" value={product.rating} readOnly />
                             </CardContent>

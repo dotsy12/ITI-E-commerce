@@ -71,7 +71,7 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/manager/add" element={<AddProduct />} /> {/*  insinde the manager page that will be made */}
-              <Route path="/manager" element={<AddProduct />} />
+              <Route path="/manager" element={<Dashboard />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/edit-profile" element={<EditProf />} />

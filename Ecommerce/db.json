@@ -49,11 +49,18 @@
       "email": "test555@gmail.com",
       "password": "test555@gmail.com",
       "adminUser": true
+    },
+    {
+      "id": "480d",
+      "name": "t",
+      "email": "t2@g.com",
+      "password": "t2@g.com",
+      "adminUser": true
     }
   ],
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "creatorId": 1,
       "name": "T-Shirt 1",
       "price": 15.99,
@@ -67,7 +74,7 @@
       "category": "Men"
     },
     {
-      "id": 2,
+      "id": "2",
       "creatorId": 1,
       "name": "T-Shirt 2",
       "price": 16.99,
@@ -81,7 +88,7 @@
       "category": "Men"
     },
     {
-      "id": 3,
+      "id": "3",
       "creatorId": 1,
       "name": "Jeans",
       "price": 39.99,
@@ -95,7 +102,7 @@
       "category": "Men"
     },
     {
-      "id": 4,
+      "id": "4",
       "creatorId": 1,
       "name": "Sneakers",
       "price": 59.99,
@@ -109,7 +116,7 @@
       "category": "Unisex"
     },
     {
-      "id": 5,
+      "id": "5",
       "creatorId": 1,
       "name": "Hoodie",
       "price": 34.99,
@@ -123,7 +130,7 @@
       "category": "Unisex"
     },
     {
-      "id": 6,
+      "id": "6",
       "creatorId": 1,
       "name": "Cap",
       "price": 14.99,
@@ -137,7 +144,7 @@
       "category": "Unisex"
     },
     {
-      "id": 7,
+      "id": "7",
       "creatorId": 1,
       "name": "T-Shirt 3",
       "price": 17.99,
@@ -151,7 +158,7 @@
       "category": "Men"
     },
     {
-      "id": 8,
+      "id": "8",
       "creatorId": 1,
       "name": "T-Shirt 4",
       "price": 18.99,
@@ -165,7 +172,7 @@
       "category": "Men"
     },
     {
-      "id": 9,
+      "id": "9",
       "creatorId": 1,
       "name": "T-Shirt 5",
       "price": 19.99,
@@ -179,7 +186,7 @@
       "category": "Men"
     },
     {
-      "id": 10,
+      "id": "10",
       "creatorId": 1,
       "name": "Polo Shirt",
       "price": 25.99,
@@ -193,7 +200,7 @@
       "category": "Men"
     },
     {
-      "id": 11,
+      "id": "11",
       "creatorId": 1,
       "name": "Tank Top",
       "price": 12.99,
@@ -207,7 +214,7 @@
       "category": "Women"
     },
     {
-      "id": 12,
+      "id": "12",
       "creatorId": 1,
       "name": "Button-Up Shirt",
       "price": 29.99,
@@ -221,7 +228,7 @@
       "category": "Men"
     },
     {
-      "id": 13,
+      "id": "13",
       "creatorId": 1,
       "name": "Sweatshirt",
       "price": 29.99,
@@ -235,7 +242,7 @@
       "category": "Unisex"
     },
     {
-      "id": 14,
+      "id": "14",
       "creatorId": 1,
       "name": "Joggers",
       "price": 34.99,
@@ -249,7 +256,7 @@
       "category": "Unisex"
     },
     {
-      "id": 15,
+      "id": "15",
       "creatorId": 1,
       "name": "Shorts",
       "price": 24.99,
@@ -263,10 +270,10 @@
       "category": "Men"
     },
     {
-      "id": 16,
+      "id": "16",
       "creatorId": 1,
       "name": "Windbreaker",
-      "price": 39.99,
+      "price": "49.99",
       "description": "Lightweight windbreaker jacket",
       "image": 45,
       "gallery": [
@@ -277,7 +284,7 @@
       "category": "Unisex"
     },
     {
-      "id": 17,
+      "id": "17",
       "creatorId": 1,
       "name": "Pajama Set",
       "price": 35.99,
@@ -291,7 +298,7 @@
       "category": "Women"
     },
     {
-      "id": 18,
+      "id": "18",
       "creatorId": 1,
       "name": "Swim Shorts",
       "price": 29.99,
@@ -305,7 +312,7 @@
       "category": "Men"
     },
     {
-      "id": 19,
+      "id": "19",
       "creatorId": 1,
       "name": "Beanie",
       "price": 14.99,
@@ -319,7 +326,7 @@
       "category": "Unisex"
     },
     {
-      "id": 20,
+      "id": "20",
       "creatorId": 1,
       "name": "Scarf",
       "price": 19.99,
@@ -333,7 +340,7 @@
       "category": "Women"
     },
     {
-      "id": 21,
+      "id": "21",
       "creatorId": 1,
       "name": "T-Shirt 6",
       "price": 15.99,
@@ -347,7 +354,7 @@
       "category": "Men"
     },
     {
-      "id": 22,
+      "id": "22",
       "creatorId": 1,
       "name": "T-Shirt 7",
       "price": 15.99,
@@ -361,7 +368,7 @@
       "category": "Men"
     },
     {
-      "id": 23,
+      "id": "23",
       "creatorId": 1,
       "name": "T-Shirt 8",
       "price": 15.99,
@@ -375,7 +382,7 @@
       "category": "Men"
     },
     {
-      "id": 24,
+      "id": "24",
       "creatorId": 1,
       "name": "T-Shirt 9",
       "price": 15.99,
@@ -387,34 +394,6 @@
       ],
       "rating": 4.5,
       "category": "Men"
-    },
-    {
-      "id": 1728917786373,
-      "creatorId": 1,
-      "name": "TEst",
-      "description": "test description for finding bugs",
-      "price": 100,
-      "category": "Electronics",
-      "image": "1",
-      "gallery": [
-        "1",
-        "2",
-        "3"
-      ],
-      "rating": 2.5
-    },
-    {
-      "id": 1728921309666,
-      "name": "test",
-      "description": "gfgsdfdf",
-      "price": 233,
-      "category": "Women",
-      "image": "24",
-      "gallery": [
-        "23",
-        "54"
-      ],
-      "rating": 3.5
     }
   ]
 }

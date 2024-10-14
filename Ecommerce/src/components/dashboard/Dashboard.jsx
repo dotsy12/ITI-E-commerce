@@ -1,41 +1,24 @@
 // @ts-nocheck
 import { useState } from 'react';
 import {
-
-  Toolbar,
-  Typography,
-  CssBaseline,
-
-  Box,
-  Button,
-  Container,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-  IconButton,
-  Paper,
+  Toolbar, Typography, CssBaseline, Box, Button, Table, TableBody, TableCell, TableContainer,
+  TableHead, TableRow, TextField, IconButton, Paper
 } from '@mui/material';
-import { Inbox, Edit, Delete } from '@mui/icons-material';
+import { Edit, Delete, Save, Cancel } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import Header1 from 'components/hearder/Header1';
 import Header3 from 'components/hearder/Header3';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-const drawerWidth = 240;
+import { images } from '../../images';
 
 const Dashboard = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const products = useSelector((state) => state.products.products);
   const [sortDirection, setSortDirection] = useState("asc");
-
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-  };
+  const [editProductId, setEditProductId] = useState(null);
+  const [updatedProduct, setUpdatedProduct] = useState({});
+  const products = useSelector((state) => state.products.products);
 
   // Filter products based on the selected category and search query
   const filteredProducts = products
@@ -56,17 +39,66 @@ const Dashboard = () => {
     setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
   };
 
+  // Delete Product
+  const handleDelete = async (productId) => {
+    try {
+      const res = await fetch(`http://localhost:5000/products/${productId}`, {
+        method: 'DELETE',
+      });
+
+      if (res.ok) {
+        console.log('Product deleted');
+        // Refresh product list here if needed
+      } else {
+        throw new Error('Failed to DELETE product');
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  // Update Product
+  const handleUpdate = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/products/${editProductId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedProduct),
+      });
+
+      if (res.ok) {
+        console.log('Product updated successfully');
+        setEditProductId(null);
+        setUpdatedProduct({});
+      } else {
+        throw new Error('Failed to update product');
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  // Edit Mode Handlers
+  const handleEdit = (product) => {
+    setEditProductId(product.id);
+    setUpdatedProduct(product); // Initialize with existing product data
+  };
+
+  const handleCancelEdit = () => {
+    setEditProductId(null);
+    setUpdatedProduct({});
+  };
+
+  const handleInputChange = (e, field) => {
+    setUpdatedProduct({ ...updatedProduct, [field]: e.target.value });
+  };
+
   return (
-      <>
-          {/* <Box sx={{ mt:7 }}/> */}
+    <>
       <Header1 />
       <Header3 />
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-
-      
-
-        {/* Main Content */}
         <Box component="main" sx={{ flexGrow: 1, p: 3, pt: 1 }}>
           <Toolbar />
           <Typography variant="h4" gutterBottom>
@@ -81,7 +113,7 @@ const Dashboard = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               sx={{ mr: 2 }}
             />
-            <Button variant="contained" color="error" component={Link} to="/add">
+            <Button variant="contained" color="error" component={Link} to="/manager/add">
               Add Product
             </Button>
           </Box>
@@ -94,7 +126,7 @@ const Dashboard = () => {
                   <TableCell>
                     Price
                     <IconButton onClick={handleSortToggle}>
-                      <ArrowUpwardIcon/>
+                      <ArrowUpwardIcon />
                     </IconButton>
                   </TableCell>
                   <TableCell>Description</TableCell>
@@ -108,24 +140,63 @@ const Dashboard = () => {
               <TableBody>
                 {filteredProducts.map((product) => (
                   <TableRow key={product.id}>
-                    <TableCell>{product.name}</TableCell>
-                    <TableCell>${product.price}</TableCell>
-                    <TableCell>{product.description}</TableCell>
+                    {/* Editable or static cells based on edit mode */}
                     <TableCell>
-                      <img src={product.image} alt={product.name} style={{ width: 50 }} />
+                      {editProductId === product.id ? (
+                        <TextField
+                          value={updatedProduct.name || ''}
+                          onChange={(e) => handleInputChange(e, 'name')}
+                        />
+                      ) : (
+                        product.name
+                      )}
                     </TableCell>
                     <TableCell>
-                      {product.gallery.join(", ")}
+                      {editProductId === product.id ? (
+                        <TextField
+                          value={updatedProduct.price || ''}
+                          onChange={(e) => handleInputChange(e, 'price')}
+                        />
+                      ) : (
+                        `$${product.price}`
+                      )}
                     </TableCell>
+                    <TableCell>
+                      {editProductId === product.id ? (
+                        <TextField
+                          value={updatedProduct.description || ''}
+                          onChange={(e) => handleInputChange(e, 'description')}
+                        />
+                      ) : (
+                        product.description
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      <img src={typeof product.image === 'string' ? product.image : images[product.image]} alt={product.name} style={{ width: 50 }} />
+                    </TableCell>
+                    {/* <TableCell>{product.gallery.join(", ")}</TableCell> */}
                     <TableCell>{product.rating}</TableCell>
                     <TableCell>{product.category}</TableCell>
                     <TableCell>
-                      <IconButton color="primary">
-                        <Edit />
-                      </IconButton>
-                      <IconButton color="error">
-                        <Delete />
-                      </IconButton>
+                      {editProductId === product.id ? (
+                        <>
+                          <IconButton color="primary" onClick={handleUpdate}>
+                            <Save />
+                          </IconButton>
+                          <IconButton color="default" onClick={handleCancelEdit}>
+                            <Cancel />
+                          </IconButton>
+                        </>
+                      ) : (
+                        <>
+                          <IconButton color="primary" onClick={() => handleEdit(product)}>
+                            <Edit />
+                          </IconButton>
+                          <IconButton color="error" onClick={() => handleDelete(product.id)}>
+                            <Delete />
+                          </IconButton>
+                        </>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
