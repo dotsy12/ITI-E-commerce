@@ -15,7 +15,7 @@ const ProductDetail = () => {
 
     // Retrieve product details from the Redux store
     const productDetails = useSelector((state) =>
-        state.products.products.find((product) => product.id === parseInt(id))
+        state.products.products.find((product) => product.id == parseInt(id))
     );
 
     useEffect(() => {
