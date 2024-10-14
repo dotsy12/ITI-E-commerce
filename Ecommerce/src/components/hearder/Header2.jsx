@@ -72,6 +72,7 @@ const Header2 = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [cartCount, setCartCount] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(JSON.parse(sessionStorage.getItem("isLoggedIn")));
   const open = Boolean(anchorEl);
 
   const handleClickListItem = (event) => {
@@ -86,6 +87,15 @@ const Header2 = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
+  const handleSignOut = () => {
+    const confirm = prompt("Are you SURE to sign out?");
+    if(confirm) {
+      setIsLoggedIn(false);
+      sessionStorage.setItem("isLoggedIn", "false");
+      localStorage.removeItem("userData"); // Remove user data
+    }
+  };
 
   const theme = useTheme();
 
@@ -94,11 +104,6 @@ const Header2 = () => {
     setCartCount(cartIds ? cartIds.length : 0); // Handle case when cartIds is null
   }, [cartCount]);
 
-  const handleSignOut = () => {
-    // Optional: Clear user data from localStorage or perform any other sign out logic
-    localStorage.removeItem("userData"); // Remove user data
-    // Redirect to login page (if necessary)
-  };
 
   return (
     <Container sx={{ my: 3, display: "flex", justifyContent: "space-between" }}>
@@ -178,7 +183,7 @@ const Header2 = () => {
         </Link>
 
         {/* Add Sign Out Icon */}
-        <Link to='/login' onClick={handleSignOut}>
+        <Link to={!isLoggedIn && '/login'} onClick={isLoggedIn && handleSignOut}>
           <IconButton>
             <LogoutIcon />
           </IconButton>
